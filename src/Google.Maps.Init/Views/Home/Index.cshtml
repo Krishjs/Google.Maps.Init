@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 ,user-scalable=no" />
+    <title>Google Maps</title>
+    <style>
+        html,body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .map-wrap {
+            height: 85%;
+        }
+        .search-box {
+            height:15%;
+            padding-left:22px;
+        }
+    </style>
+</head>
+<body>
+    <div id="searchbox" class="search-box">
+        <h3>Sea way</h3>
+        <label for="from">From:</label>
+        <input type="text" id="from" />
+        <label for="To">To:</label>
+        <input type="text" id="to" />        
+        <input type="button" id="search" value="Search" />
+    </div>
+    <div id="map" class="map-wrap"></div>
+    <script src="~/js/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5YpNj7AK2gZ-iY5Fvz9vkhy2Ml1IwAmM&callback=initMap&language=en-US&region=in"></script>
+</body>
+</html>
