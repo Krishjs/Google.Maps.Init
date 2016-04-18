@@ -24,13 +24,13 @@
     <div id="searchbox" class="search-box">
         <h3>Sea way</h3>
         <label for="from">From:</label>
-        <input type="text" id="from" />
+        <input type="text" id="from" onchange="kjsmap.Form.FromPort.OnChange(this, event)"/>
         <label for="To">To:</label>
-        <input type="text" id="to" />        
-        <input type="button" id="search" value="Search" />
+        <input type="text" id="to" onchange="kjsmap.Form.ToPort.OnChange(this, event)" />        
+        <input type="button" id="search" onclick="kjsmap.Form.Search(this, event)" value="Search" />
     </div>
     <div id="map" class="map-wrap"></div>
-    <script src="~/js/map.js"></script>
+    <script src="~/js/map.js?v=523"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5YpNj7AK2gZ-iY5Fvz9vkhy2Ml1IwAmM&callback=initMap&language=en-US&region=in"></script>
 </body>
 </html>

@@ -1,0 +1,442 @@
+﻿{
+  "type": "FeatureCollection",
+  "data_type": "Dataset",
+  "url_type": null,
+  "permissions": [
+    {
+      "permissions": {
+        "download": true,
+        "view": true
+      },
+      "group_id": "everyone"
+    }
+  ],
+  "classification": null,
+  "title": "Oak Ridge National Labs CTA Transportation Network Group, Global Shipping Lane Network, World, 2000",
+  "count": 8273,
+  "stream_id": 25,
+  "contributor": {
+    "url": "http://geocommons.com/users/2",
+    "name": "data"
+  },
+  "data_attributes": null,
+  "calculation_params": null,
+  "icon_link": null,
+  "link": "http://geocommons.com/overlays/25.json",
+  "extent": [ -180.0, -60.0001, 180.0, 76.5 ],
+  "geometry_types": [ "line" ],
+  "unique_name": null,
+  "name": "Oak Ridge National Labs CTA Transportation Network Group, Global Shipping Lane Network, World, 2000",
+  "feature_count": 8273,
+  "description": "This is a dataset downloaded from the Oak Ridge National Labs CTA Transportation Network Group - specifically their intermodal project - http://www-cta.ornl.gov/transnet/Intermodal_Network.html. From intermodal data set, the global shipping lane data queried out and created in a separate shapefile. We did some all to all routing analysis over it, but the results were a bit questionable. The data does have to and from nodes and can be routed across but there is a weird grid system that goes along with the traditional shipping routes that seems to makes things a bit screwy. Over all a cool look at global commodity routes across the oceans.",
+  "next_feature": null,
+  "is_raster": false,
+  "short_classification": "Y",
+  "stats": {
+    "From Node0": {
+      "max": 203381.0,
+      "mean": 137563.891816753,
+      "variance": 6064126870.4173,
+      "stdev": 77872.5039434158,
+      "min": 2.0,
+      "median": 189002.0
+    },
+    "Route Freq": {
+      "max": 902368126.0,
+      "mean": 1397589.89278375,
+      "variance": 195250568172751.0,
+      "stdev": 13973208.9432868,
+      "min": 0.0,
+      "median": 153.0
+    },
+    "Impedence0": {
+      "max": 7043.4,
+      "mean": 305.847768644993,
+      "variance": 243561.60002735,
+      "stdev": 493.519604501534,
+      "min": 0.0,
+      "median": 88.7
+    },
+    "To Node0": {
+      "max": 203381.0,
+      "mean": 138013.033724163,
+      "variance": 6051071439.27609,
+      "stdev": 77788.6330981339,
+      "min": 2.0,
+      "median": 189008.0
+    },
+    "Length0": {
+      "max": 109.763,
+      "mean": 4.84992699141784,
+      "variance": 60.8164146387701,
+      "stdev": 7.79848797131663,
+      "min": 0.0,
+      "median": 1.46
+    }
+  },
+  "features": [
+    {
+      "properties": {
+        "From Node0": 203050.0,
+        "Route Freq": 22.0,
+        "Impedence0": 719.6,
+        "id": "a625nghd6uql",
+        "To Node0": 203073.0,
+        "Name0": "",
+        "Length0": 11.047
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ 11.0, -19.00001907 ],
+          [ 5.516469955, -19.58231926 ],
+          [ 0.0, -20.00000954 ]
+        ]
+      }
+    },
+    {
+      "properties": {
+        "From Node0": 201799.0,
+        "Route Freq": 10.0,
+        "Impedence0": 342.4,
+        "id": "a625ng7ej3oi",
+        "To Node0": 202498.0,
+        "Name0": "",
+        "Length0": 5.009
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ 38.90000916, 20.74999046 ],
+          [ 41.20000076, 16.2999897 ]
+        ]
+      }
+    },
+    {
+      "properties": {
+        "From Node0": 201799.0,
+        "Route Freq": 11135113.0,
+        "Impedence0": 231.4,
+        "id": "a625ng9po8sf",
+        "To Node0": 201055.0,
+        "Name0": "",
+        "Length0": 3.425
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ 38.90000916, 20.74999046 ],
+          [ 37.0, 23.59999084 ]
+        ]
+      }
+    },
+    {
+      "properties": {
+        "From Node0": 201266.0,
+        "Route Freq": 25037.0,
+        "Impedence0": 98.44,
+        "id": "a625ng9xkqsn",
+        "To Node0": 201888.0,
+        "Name0": "",
+        "Length0": 1.434
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ -71.28975677, 21.54577065 ],
+          [ -72.0, 20.2999897 ]
+        ]
+      }
+    },
+    {
+      "properties": {
+        "From Node0": 203108.0,
+        "Route Freq": 0.0,
+        "Impedence0": 13.6,
+        "id": "a625nggsov7i",
+        "To Node0": 203107.0,
+        "Name0": "",
+        "Length0": 0.209
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ -175.5, -20.99998093 ],
+          [ -175.296936, -20.95126915 ]
+        ]
+      }
+    },
+    {
+      "properties": {
+        "From Node0": 203107.0,
+        "Route Freq": 93969.0,
+        "Impedence0": 352.62,
+        "id": "a625nggrrf6o",
+        "To Node0": 203067.0,
+        "Name0": "",
+        "Length0": 5.382
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ -175.296936, -20.95126915 ],
+          [ -170.0, -20.00000954 ]
+        ]
+      }
+    },
+    {
+      "properties": {
+        "From Node0": 203130.0,
+        "Route Freq": 920002.0,
+        "Impedence0": 3183.33,
+        "id": "a625ngjw7i53",
+        "To Node0": 203360.0,
+        "Name0": "",
+        "Length0": 52.692
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ -175.8051758, -23.95577049 ],
+          [ -130.0, -50.00003815 ]
+        ]
+      }
+    },
+    {
+      "properties": {
+        "From Node0": 202802.0,
+        "Route Freq": 22244.0,
+        "Impedence0": 88.9,
+        "id": "a625ng7fjbry",
+        "To Node0": 202797.0,
+        "Name0": "",
+        "Length0": 1.274
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ 8.0, -9.999999747e-06 ],
+          [ 6.726019859, 0.02594999969 ]
+        ]
+      }
+    },
+    {
+      "properties": {
+        "From Node0": 202797.0,
+        "Route Freq": 13.0,
+        "Impedence0": 469.32,
+        "id": "a625ng8fr973",
+        "To Node0": 202814.0,
+        "Name0": "",
+        "Length0": 6.726
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ 6.726019859, 0.02594999969 ],
+          [ 0.0, -1.999999949e-05 ]
+        ]
+      }
+    },
+    {
+      "properties": {
+        "From Node0": 202802.0,
+        "Route Freq": 6093.0,
+        "Impedence0": 24.1,
+        "id": "a625ngb7vv62",
+        "To Node0": 202794.0,
+        "Name0": "",
+        "Length0": 0.349
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ 8.0, -9.999999747e-06 ],
+          [ 7.999989986, 0.3487800062 ]
+        ]
+      }
+    },
+    {
+      "properties": {
+        "From Node0": 202794.0,
+        "Route Freq": 5.0,
+        "Impedence0": 185.28,
+        "id": "a625ngasjabm",
+        "To Node0": 202774.0,
+        "Name0": "",
+        "Length0": 2.651
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ 7.999989986, 0.3487800062 ],
+          [ 8.0, 2.999969959 ]
+        ]
+      }
+    },
+    {
+      "properties": {
+        "From Node0": 122722.0,
+        "Route Freq": 46164.0,
+        "Impedence0": 146.56,
+        "id": "a625ngfk0q4b",
+        "To Node0": 122037.0,
+        "Name0": "",
+        "Length0": 2.644
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ 7.5, 37.39999008 ],
+          [ 10.14307976, 37.48509979 ]
+        ]
+      }
+    },
+    {
+      "properties": {
+        "From Node0": 122037.0,
+        "Route Freq": 1.0,
+        "Impedence0": 47.46,
+        "id": "a625ngecomr2",
+        "To Node0": 121925.0,
+        "Name0": "",
+        "Length0": 0.857
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ 10.14307976, 37.48509979 ],
+          [ 11.0, 37.49998093 ]
+        ]
+      }
+    },
+    {
+      "properties": {
+        "From Node0": 68408.0,
+        "Route Freq": 4.0,
+        "Impedence0": 118.26,
+        "id": "a625nghqarxc",
+        "To Node0": 51012.0,
+        "Name0": "",
+        "Length0": 2.105
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ 29.10000038, 41.09999084 ],
+          [ 30.98076057, 42.04444122 ]
+        ]
+      }
+    },
+    {
+      "properties": {
+        "From Node0": 51012.0,
+        "Route Freq": 39005.0,
+        "Impedence0": 123.43,
+        "id": "a625ngil7yi8",
+        "To Node0": 37165.0,
+        "Name0": "",
+        "Length0": 2.234
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ 30.98076057, 42.04444122 ],
+          [ 33.0, 42.99996948 ]
+        ]
+      }
+    },
+    {
+      "properties": {
+        "From Node0": 202911.0,
+        "Route Freq": 25055.0,
+        "Impedence0": 98.52,
+        "id": "a625ngc2024z",
+        "To Node0": 202900.0,
+        "Name0": "",
+        "Length0": 1.435
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ 179.3000031, -8.899999619 ],
+          [ 178.5675354, -7.666500092 ]
+        ]
+      }
+    },
+    {
+      "properties": {
+        "From Node0": 202900.0,
+        "Route Freq": 20.0,
+        "Impedence0": 721.7,
+        "id": "a625nge4vm7d",
+        "To Node0": 202791.0,
+        "Name0": "",
+        "Length0": 10.332
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ 178.5675354, -7.666500092 ],
+          [ 173.1000061, 1.100000024 ]
+        ]
+      }
+    },
+    {
+      "properties": {
+        "From Node0": 200829.0,
+        "Route Freq": 25491.0,
+        "Impedence0": 91.87,
+        "id": "a625ngi3r2dk",
+        "To Node0": 200680.0,
+        "Name0": "",
+        "Length0": 1.46
+      },
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [ 120.0, 25.70000076 ],
+          [ 121.4573669, 25.79322052 ]
+        ]
+      }
+    }
+  ],
+  "is_temporal": false,
+  "author": {
+    "url": "http://www-cta.ornl.gov/transnet/Intermodal_Network.html",
+    "metadata": "",
+    "contact_name": "",
+    "contact_address": "",
+    "source": "Oak Ridge National Labs CTA Transportation Network Group",
+    "contact_phone": ""
+  },
+  "source": "http://www-cta.ornl.gov/transnet/Intermodal_Network.html",
+  "pagination": {
+    "sort": null,
+    "start": 0,
+    "total": 8273,
+    "limit": 1000000
+  },
+  "state": "complete",
+  "tags": "global,infrastructure,shipping,ships,trade,transportation",
+  "published": "2000-01-01T12:00:00Z",
+  "id": 25
+}
