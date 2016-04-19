@@ -165295,7 +165295,7 @@
       }
     }
   ],
-  "is_temporal": false,
+  "is_temporal": true,
   "author": {
     "url": "http://www-cta.ornl.gov/transnet/Intermodal_Network.html",
     "metadata": "",
