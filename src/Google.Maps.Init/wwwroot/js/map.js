@@ -1,8 +1,26 @@
 ﻿
 (function (w) {
+    function formInput(id) {
+        this.Id = id;
+        this.Mutant = undefined,
+        this.Value = '';
+        this.Position = {};
+        this.Marker = null;
+    };
+    formInput.prototype.Me = function () {
+        return document.getElementById(this.Id);
+    };
+    formInput.prototype.Mutate = function () {
+        this.Mutant = new google.maps.places.Autocomplete(this.Me());
+        this.Mutant.bindTo('bounds', kjsmap.map);
+    };
+    formInput.prototype.OnChange = function (s, e) {
+        this.Value = s.value;
+        kjsmap.SetPosition(this, this.Value);
+    };
     w['kjsmap'] = {
         map: null,
-        Circle:undefined,
+        Circle: undefined,
         mapOptions: {
             minZoomLevel: 3,
             center: { lat: 13.046034415549146, lng: 80.321044921875 }
@@ -26,15 +44,38 @@
                             id: output.results[0].place_id
                         });
                         s.Marker.setMap(self.map);
+                        _.defer(function () { self.Neighbour.Calculate(s.Position); });
                     }
                 }
             });
+        },
+        Contains: function (c, p) {
+            return c.getBounds().contains(latLng);
+        },
+        Neighbour: {
+            Calculate: function (p) {
+                if (kjsmap.Fetch(!0, this.Calculate, this, [p])) {
+                    var circle = new google.maps.Circle({
+                        strokeColor: '#000000',
+                        strokeOpacity: 0.8,
+                        strokeWeight: 2,
+                        fillColor: '#F0FFFF',
+                        fillOpacity: 0.2,
+                        center: p,
+                        radius: 1,
+                    });
+                    kjsmap.Lines.forEach(function (v) {
+                        kjsmap.Contains(cricle, p);
+                    });
+                    kjsmap.Contains(cricle, p);
+                }
+            }
         },
         Parser: {
             Address: function (add) {
                 var components = {};
                 add.forEach(function (v1, k) {
-                    v1.types.forEach(function (v2,k2) {
+                    v1.types.forEach(function (v2, k2) {
                         components[v2] = v1.long_name
                     });
                 })
@@ -42,27 +83,12 @@
             }
         },
         Form: {
-            FromPort: {
-                Value: '',
-                Position: {},
-                Marker: null,
-                OnChange: function (s, e) {
-                    this.Value = s.value;
-                    kjsmap.SetPosition(this, this.Value);
-                }
-            },
-            ToPort: {
-                Value: '',
-                Position: {},
-                OnChange: function (s, e) {
-                    this.Value = s.value;
-                    kjsmap.SetPosition(this, this.Value);
-                }
-            },
+            FromPort: new formInput('from'),
+            ToPort: new formInput('to'),
             Search: function (s, e) {
                 var start = this.FromPort.Marker.position;
                 var end = this.ToPort.Marker.position;
-                kjsmap.Direction.Service(!0,{
+                kjsmap.Direction.Service(!0, {
                     origin: start,
                     destination: end,
                     travelMode: google.maps.DirectionsTravelMode.TRANSIT,
@@ -73,33 +99,58 @@
                 kjsmap.Circle.setRadius(s.value * 1000);
             }
         },
-        RouteData:null,
-        RoutesView: function (f) {
-            if (f) {
-                if (this.RouteData === null) {
-                    var self = this;
-                    ajax.call({
-                        url: 'http://localhost:8081',
-                        isasync: true,
-                        type: 'GET',
-                        success: function (data) {
-                            self.RouteData = JSON.parse(data);
-                            kjsmap.map.data.addGeoJson(self.RouteData);
-                        }
+        RouteData: null,
+        Lines: [],
+        Fetch: function (fn, scope, args) {
+            if (this.RouteData === null) {
+                var self = this;
+                ajax.call({
+                    url: 'http://localhost:8081',
+                    isasync: true,
+                    type: 'GET',
+                    success: function (data) {
+                        jsondata = JSON.parse(data);
+                        self.RouteData = jsondata;
+                        if (fn) { fn.apply(scope || self, args); }
+                    }
+                });
+            }
+            return this.RouteData !== null;
+        },
+        DrawRoute: function (s) {
+            var self = this;
+            var toPostion = function (v) {
+                return {
+                    lat: v[1],
+                    lng: v[0]
+                };
+            };
+            this.RouteData.features.forEach(function (v, i) {
+                if (_.chain(v.geometry.coordinates).map(function (gc) { return gc[0]; }).uniq().value().length === v.geometry.coordinates.length
+                   && _.chain(v.geometry.coordinates).map(function (gc) { return gc[1]; }).uniq().value().length === v.geometry.coordinates.length) {
+                    var line = new google.maps.Polyline({
+                        path: v.geometry.coordinates.map(function (vgc) { return toPostion(vgc); }),
+                        geodesic: true,
+                        strokeColor: '#000000',
+                        strokeOpacity: 1.0,
+                        strokeWeight: 2,
+                        visible: s
                     });
+                    line.setMap(kjsmap.map);
+                    self.Lines.push(line);
                 }
-                else {
-                    kjsmap.map.data.addGeoJson(this.RouteData);
-                }
+            });
+        },
+        RoutesView: function (f) {
+            if (this.Fetch(this.RoutesView, this, [f])) {
+                this.DrawRoute(!0);
             }
-            else {
-                kjsmap.map.data.forEach(function (feature) { kjsmap.map.data.remove(feature); });
-            }
+            this.Lines.forEach(function (l) { l.setVisible(f); });
         },
         Direction: {
             RenderMan: undefined,
             ServiceGuy: undefined,
-            Service: function (d,options,callback) {
+            Service: function (d, options, callback) {
                 if (!this.ServiceGuy) { this.ServiceGuy = new google.maps.DirectionsService(); }
                 var self = this;
                 this.ServiceGuy.route(options, function (r) {
@@ -107,7 +158,7 @@
                     else { callback.call(kjsmap, r); }
                 });
             },
-            Display: function (n,r) {
+            Display: function (n, r) {
                 var renderGuy = (!n && this.RenderMan) ? this.RenderMan : new google.maps.DirectionsRenderer();
                 renderGuy.setMap(kjsmap.map);
                 renderGuy.setDirections(r);
@@ -146,13 +197,11 @@ function initMap() {
             minZoom: kjsmap.mapOptions.minZoomLevel,
             center: { lat: 13.046034415549146, lng: 80.321044921875 }
         });
-
-        var posStart = new google.maps.LatLng(-85, -180);
-        var posEnd = new google.maps.LatLng(85, 180);
-        var allowedBounds = new google.maps.LatLngBounds(posStart, posEnd);
-
+        var southWest = new google.maps.LatLng(-85, -180);
+        var northEast = new google.maps.LatLng(85, 180);
+        var allowedBounds = new google.maps.LatLngBounds(southWest, northEast);
         kjsmap.Circle = new google.maps.Circle({
-            strokeColor:'#000000',
+            strokeColor: '#000000',
             strokeOpacity: 0.8,
             strokeWeight: 2,
             fillColor: '#F0FFFF',
@@ -161,6 +210,8 @@ function initMap() {
             radius: 500,
             map: kjsmap.map
         });
+        kjsmap.Form.FromPort.Mutate();
+        kjsmap.Form.ToPort.Mutate();
         google.maps.event.addListener(kjsmap.map, "click", function (e) {
             console.log("Lat: " + e.latLng.lat());
             console.log("Lng: " + e.latLng.lng());
@@ -173,6 +224,6 @@ function initMap() {
             }
             kjsmap.map.panTo(lastValidCenter);
         });
-    }    
+    }
 };
 

@@ -18,25 +18,43 @@
         .search-box {
             height: 15%;
             padding-left: 22px;
-            min-height:80px;
+            min-height: 80px;
         }
+
         .FL {
-            float:left;        
+            float: left;
         }
+
+        .float-panel {
+            position: absolute;
+            top: 250px;
+            height:200px;
+            width:200px;
+            left: 2%;
+            z-index: 5;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: 'Roboto','sans-serif';
+            line-height: 30px;
+            padding-left: 10px;            
+        }
+
         .kjs-label {
-            
-        }            
+        }
+
         .kjs-text {
-            
-        }            
+        }
+
         .search-box fieldset {
-                height:50%;
-                min-height:50px;
-            }
-            .search-box legend {
-                font-size:x-large;
-                font-weight:bold;                
-            }            
+            height: 50%;
+            min-height: 50px;
+        }
+
+        .search-box legend {
+            font-size: x-large;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -51,11 +69,13 @@
             <input class="kjs-text FL" type="text" id="to" onchange="kjsmap.Form.ToPort.OnChange(this, event)" />
             <input class="kjs-btn FL" type="button" id="search" onclick="kjsmap.Form.Search(this, event)" value="Search" />
             <label class="kjs-label FL" for="from">Change Radius:</label>
-            <input class="kjs-range FL" type="range" id="cricle" min="1" max='100' value="50" step="1"  oninput="kjsmap.Form.RangeChanged(this,event)" onchange="kjsmap.Form.RangeChanged(this,event)"/>
+            <input class="kjs-range FL" type="range" id="cricle" min="1" max='100' value="50" step="1" oninput="kjsmap.Form.RangeChanged(this,event)" onchange="kjsmap.Form.RangeChanged(this,event)" />
+            <div class="float-panel" id="results"></div>
         </fieldset>
     </div>
     <div id="map" class="map-wrap"></div>
-    <script src="~/js/map.js?v=5232"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5YpNj7AK2gZ-iY5Fvz9vkhy2Ml1IwAmM&callback=initMap&language=en-US&region=in"></script>
+    <script src="~/js/map.js?v=522"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5YpNj7AK2gZ-iY5Fvz9vkhy2Ml1IwAmM&libraries=places&callback=initMap&language=en-US&region=in"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
 </body>
 </html>
