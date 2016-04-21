@@ -6,6 +6,7 @@
         this.Value = '';
         this.Position = {};
         this.Marker = null;
+        this.Lines = [];
     };
     formInput.prototype.Me = function () {
         return document.getElementById(this.Id);
@@ -44,17 +45,18 @@
                             id: output.results[0].place_id
                         });
                         s.Marker.setMap(self.map);
-                        _.defer(function () { self.Neighbour.Calculate(s.Position); });
+                        _.defer(function () { self.Neighbour.Calculate(s.Position,s); });
                     }
                 }
             });
         },
         Contains: function (c, p) {
-            return c.getBounds().contains(latLng);
+            return c.getBounds().contains(p);
         },
         Neighbour: {
-            Calculate: function (p) {
-                if (kjsmap.Fetch(!0, this.Calculate, this, [p])) {
+            Calculate: function (p,s) {
+                if (kjsmap.Fetch(this.Calculate, this, [p])) {
+                    var radius = 100000;
                     var circle = new google.maps.Circle({
                         strokeColor: '#000000',
                         strokeOpacity: 0.8,
@@ -62,13 +64,39 @@
                         fillColor: '#F0FFFF',
                         fillOpacity: 0.2,
                         center: p,
-                        radius: 1,
+                        radius: radius
                     });
-                    kjsmap.Lines.forEach(function (v) {
-                        kjsmap.Contains(cricle, p);
-                    });
-                    kjsmap.Contains(cricle, p);
+                    circle.setMap(kjsmap.map);
+                    var found = !1;
+                    function findNeighbour(){
+                        kjsmap.Lines.forEach(function (v) {
+                            var iamneighbour = !1;
+                            v.getPath().getArray().forEach(function (gv) {
+                                if (kjsmap.Contains(circle, gv)) {
+                                    iamneighbour = !0;                                    
+                                }
+                            });
+                            if (iamneighbour) {
+                                found = !0;
+                                v.setVisible(!0);
+                                s.Lines.push(v);
+                            }
+                        });
+                    }
+                    while (!found) {
+                        circle.setRadius(radius);
+                        findNeighbour();
+                        radius = radius - 10000;
+                        if (radius === 0) {
+                            found = !0;
+                        }
+                    }
                 }
+            }
+        },
+        PathFinder:{
+            Find: function (f, t) {
+                
             }
         },
         Parser: {
@@ -94,6 +122,10 @@
                     travelMode: google.maps.DirectionsTravelMode.TRANSIT,
                     transitOptions: { modes: [google.maps.TransitMode.TRAIN] }
                 });
+                if (this.FromPort.Lines.length > 0
+                    && this.ToPort.Lines.length > 0) {
+                    kjsmap.PathFinder.Find(this.FromPort.Lines, this.ToPort.Lines);
+                }
             },
             RangeChanged: function (s, e) {
                 kjsmap.Circle.setRadius(s.value * 1000);
@@ -208,10 +240,11 @@ function initMap() {
             fillOpacity: 0.2,
             center: { lat: 13.089844954062787, lng: 80.29838562011719 },
             radius: 500,
+            visible: !1,
             map: kjsmap.map
         });
-        kjsmap.Form.FromPort.Mutate();
-        kjsmap.Form.ToPort.Mutate();
+        //kjsmap.Form.FromPort.Mutate();
+        //kjsmap.Form.ToPort.Mutate();
         google.maps.event.addListener(kjsmap.map, "click", function (e) {
             console.log("Lat: " + e.latLng.lat());
             console.log("Lng: " + e.latLng.lng());

@@ -70,11 +70,11 @@
             <input class="kjs-btn FL" type="button" id="search" onclick="kjsmap.Form.Search(this, event)" value="Search" />
             <label class="kjs-label FL" for="from">Change Radius:</label>
             <input class="kjs-range FL" type="range" id="cricle" min="1" max='100' value="50" step="1" oninput="kjsmap.Form.RangeChanged(this,event)" onchange="kjsmap.Form.RangeChanged(this,event)" />
-            <div class="float-panel" id="results"></div>
+            @*<div class="float-panel" id="results"></div>*@
         </fieldset>
     </div>
     <div id="map" class="map-wrap"></div>
-    <script src="~/js/map.js?v=522"></script>
+    <script src="~/js/map.js?v=5122"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5YpNj7AK2gZ-iY5Fvz9vkhy2Ml1IwAmM&libraries=places&callback=initMap&language=en-US&region=in"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
 </body>
